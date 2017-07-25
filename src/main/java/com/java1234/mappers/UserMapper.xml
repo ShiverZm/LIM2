@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java1234.dao.UserDao">
+
+	<resultMap type="User" id="UserResult">
+		<result property="id" column="id"/>
+		<result property="userName" column="userName"/>
+		<result property="password" column="password"/>
+		<result property="roleId" column="roleId" />
+	</resultMap>
+	
+	<select id="login" parameterType="User" resultMap="UserResult">
+	   select * from t_user u
+	   where userName=#{userName} and password=#{password} and roleId=#{roleId} 
+	</select>
+	<select id="getRoles" parameterType="String" resultType="String">
+	   select r.roleName from t_user u,t_role r
+	   where u.roleId=r.id and u.userName=#{userName} 
+	</select>
+	<select id="getPermissions" parameterType="String" resultType="String">
+	   select p.permissionName from t_user u,t_permission p,t_role r 
+	   where u.roleId=r.id and r.id=p.roleId and u.userName=#{userName}
+	</select>
+	<select id="getByUserName" parameterType="String" resultMap="UserResult">
+	   select * from t_user where userName=#{userName}
+	</select>
+</mapper> 
