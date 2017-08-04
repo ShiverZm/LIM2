@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java1234.dao.ProjectCheckDao">
+
+	<resultMap type="ProjectCheck" id="ProjectCheckResult">
+		<result property="proId" column="proId" />
+		<result property="proName" column="proName" />
+		<result property="checkByTeacher" column="checkByTeacher" />
+		<result property="checkByDirector" column="checkByDirector" />
+		<result property="checkByCDirector" column="checkByCDirector" />
+	</resultMap>
+
+	<select id="find" parameterType="Map" resultMap="ProjectCheckResult">
+		select * from t_projectCheck
+		<where>
+		    checkByTeacher='否' or checkByDirector='否' or checkByCDirector='否'
+			<if test="proName!=null and proName!='' ">
+				and proName like #{proName}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size} 
+		</if>
+	</select>
+
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from t_projectCheck
+		<where>
+			<if test="proName!=null and proName!='' ">
+				and proName like #{proName}
+			</if>
+		</where>
+	</select>
+	
+	<update id="check" parameterType="ProjectCheck">
+	   update t_projectCheck 
+	   <set>
+	      checkByTeacher =#{checkByTeacher},
+	      checkByDirector =#{checkByDirector},
+	      checkByCDirector =#{checkByCDirector},
+	   </set>
+	   where proId=#{proId}
+	</update>
+	
+	<insert id="add" parameterType="ProjectCheck">
+	  insert into t_projectCheck value(#{proId},#{proName},"否","否","否")
+	</insert>
+	
+	<select id="getFinishedPro" resultType="Integer">
+	   select proId from t_projectCheck 
+	   where checkByTeacher='是' and checkByDirector='是' and checkByCDirector='是'
+	</select>
+</mapper> 

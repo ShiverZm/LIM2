@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java1234.dao.LaboratoryReserDao">
+
+	<resultMap type="LaboratoryReser" id="LaboratoryReserResult">
+		<result property="id" column="id"/>
+		<result property="labName" column="labName"/>
+		<result property="labDutyPerson" column="labDutyPerson"/>
+		<result property="labResPerson" column="labResPerson"/>
+		<result property="labResTime" column="labResTime"/>
+	</resultMap>
+
+	<select id="find" parameterType="Map" resultMap="LaboratoryReserResult">
+		select * from t_labReservation
+		<where>
+			<if test="labName!=null and labName!='' ">
+				and labName like #{labName}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from t_labReservation
+		<where>
+			<if test="labName!=null and labName!='' ">
+				and labName like #{labName}
+			</if>
+		</where>
+	</select>
+	<insert id="add" parameterType="LaboratoryReser" >
+	  insert into t_labReservation value(null,#{labName},#{labDutyPerson},#{labResPerson},#{labResTime})   
+	</insert>
+	
+	<update id="update" parameterType="LaboratoryReser">
+	  update t_labReservation
+	   <set>
+	       <if test="labName!=null and labName!='' ">
+	          labName=#{labName},
+	       </if>
+	        <if test="labDutyPerson!=null and labDutyPerson!='' ">
+	          labDutyPerson=#{labDutyPerson},
+	       </if>
+	       <if test="labResPerson!=null and labResPerson!='' ">
+	          labResPerson=#{labResPerson},
+	       </if>
+	       <if test="labResTime!=null and labResTime!='' ">
+	          labResTime=#{labResTime},
+	       </if>
+	   </set>
+	   where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+	delete from t_labReservation where id=#{id}
+	</delete>
+	
+	<select id="findByLabResPerson" parameterType="String" resultMap="LaboratoryReserResult">
+	   select * from t_labReservation where labResPerson=#{realName}
+	</select>
+</mapper> 

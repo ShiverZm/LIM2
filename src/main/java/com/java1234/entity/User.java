@@ -4,6 +4,8 @@ public class User {
 	private Integer id;
     private String userName;
     private String password;
+    private String realName;
+    private String email;
     private Integer roleId;
     
 	public Integer getId() {
@@ -30,6 +32,16 @@ public class User {
 	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
-	
-    
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

@@ -3,6 +3,7 @@ package com.java1234.realm;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

@@ -9,6 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userName" column="userName"/>
 		<result property="password" column="password"/>
 		<result property="roleId" column="roleId" />
+		<result property="realName" column="realName" />
+		<result property="email" column="email" />
 	</resultMap>
 	
 	<select id="login" parameterType="User" resultMap="UserResult">
@@ -26,4 +28,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getByUserName" parameterType="String" resultMap="UserResult">
 	   select * from t_user where userName=#{userName}
 	</select>
+	
+	<select id="find" parameterType="Map" resultMap="UserResult">
+		select * from t_user
+		<where>
+			<if test="userName!=null and userName!='' ">
+				and userName like #{userName}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from t_user
+		<where>
+			<if test="userName!=null and userName!='' ">
+				and userName like #{userName}
+			</if>
+		</where>
+	</select>
+	<insert id="add" parameterType="User" >
+	  insert into t_user value(null,#{userName},#{password},#{realName},#{email},#{roleId})   
+	</insert>
+	
+	<update id="update" parameterType="User">
+	  update t_user 
+	   <set>
+	       <if test="userName!=null and userName!='' ">
+	          userName=#{userName},
+	       </if>
+	        <if test="password!=null and password!='' ">
+	          password=#{password},
+	       </if>
+	        <if test="realName!=null and realName!='' ">
+	          realName=#{realName},
+	       </if>
+	        <if test="email!=null and email!='' ">
+	          email=#{email},
+	       </if>
+	        <if test="roleId!=null and roleId!='' ">
+	          roleId=#{roleId},
+	       </if>
+	   </set>
+	   where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+	delete from t_user where id=#{id}
+	</delete>
+	
+	<update id="modifyPassword" >
+	  update  t_user 
+	  <set>
+	     <if test="newPassword!=null and newPassword!='' ">
+	          password=#{newPassword},
+	       </if>
+	   </set>
+	   where userName=#{userName} and password=#{oldPassword}
+	</update>
 </mapper> 

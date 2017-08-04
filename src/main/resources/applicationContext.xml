@@ -59,7 +59,7 @@
 	    <!-- Shiro的核心安全接口,这个属性是必须的 -->  
 	    <property name="securityManager" ref="securityManager"/>
 	    <!-- 身份认证失败，则跳转到登录页面的配置 -->  
-	    <property name="loginUrl" value="/index.jsp"/>
+	    <property name="loginUrl" value="/login.jsp"/>
 	    <!-- 权限认证失败，则跳转到指定页面 -->  
 	    <property name="unauthorizedUrl" value="/unauthor.jsp"/>  
 	    <!-- Shiro连接约束配置,即过滤链的定义 -->  
@@ -67,6 +67,7 @@
 	        <value>  
 	             /login=anon
 				/admin*=authc
+				/project=authc
 				/student=roles[teacher]
 				/teacher=perms["user:create"]
 	        </value>  
@@ -87,7 +88,8 @@
         <!-- 定义事务传播属性 -->  
         <tx:attributes>  
             <tx:method name="insert*" propagation="REQUIRED" />  
-            <tx:method name="update*" propagation="REQUIRED" />  
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="modify*" propagation="REQUIRED" read-only="false"/>   
             <tx:method name="edit*" propagation="REQUIRED" />  
             <tx:method name="save*" propagation="REQUIRED" />  
             <tx:method name="add*" propagation="REQUIRED" />  
