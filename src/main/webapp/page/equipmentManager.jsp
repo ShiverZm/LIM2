@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/icon.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/jquery-easyui-1.5.2/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/jquery-easyui-1.5.2/themes/icon.css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
  var url;
  function searchEquipment(){
@@ -142,54 +147,67 @@
 		</thead>
 	</table>
 	<div id="tb">
-	<div>
-			<a href="javascript:openEquipmentAddDialog()" class="easyui-linkbutton"
-				iconCls="icon-add" plain="true">添加</a> <a
-				href="javascript:openEquipmentModifyDialog()" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true">修改</a> <a
+		<div>
+			<a href="javascript:openEquipmentAddDialog()"
+				class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a> <a
+				href="javascript:openEquipmentModifyDialog()"
+				class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> <a
 				href="javascript:deleteEquipment()" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true">删除</a>
 		</div>
- 	<div>
- 		&nbsp;设备名称：&nbsp;<input type="text" id="s_equipmentName" size="20" onkeydown="if(event.keyCode==13) searchEquipment()"/>
- 		<a href="javascript:searchEquipment()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
- 	</div>
- 	</div>
- 	<div id="dlg" class="easyui-dialog"  style="width:620px;height:250px;padding: 10px 20px"
-	 closed="true" buttons="#dlg-buttons">
-	  <form id="fm"	method="post">
-	   <table cellspace="8px">
-	     <tr>
-	       <td>设备名称：</td>
-	       <td><input type="text" id="equipmentName" name="equipmentName" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td>型号：</td>
-	       <td><input type="text" id="model" name="model" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	     <tr>
-	         <td>单位：</td>
-	       <td><input type="text" id="unit" name="unit" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td>价格：</td>
-	       <td><input type="text" id="price" name="price" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	     <tr>
-	         <td>库存：</td>
-	       <td><input type="text" id="store" name="store" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td>总数：</td>
-	       <td>
-	        <input type="text" id="sum" name="sum" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font>
-	        &nbsp;<font color="red">*</font>
-	       </td>
-	     </tr>
-	   </table>
-	  </form>
-	 </div>
-	 <div id="dlg-buttons">
- 	<a href="javascript:saveEquipment()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
- 	<a href="javascript:closeEquipmentDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
- </div>
- </div>	
+		<div>
+			&nbsp;设备名称：&nbsp;<input type="text" id="s_equipmentName" size="20"
+				onkeydown="if(event.keyCode==13) searchEquipment()" /> <a
+				href="javascript:searchEquipment()" class="easyui-linkbutton"
+				iconCls="icon-search" plain="true">搜索</a>
+		</div>
+	</div>
+	<div id="dlg" class="easyui-dialog"
+		style="width: 620px; height: 250px; padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<form id="fm" method="post">
+			<table cellspace="8px">
+				<tr>
+					<td>设备名称：</td>
+					<td><input type="text" id="equipmentName" name="equipmentName"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>型号：</td>
+					<td><input type="text" id="model" name="model"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+				<tr>
+					<td>单位：</td>
+					<td><input type="text" id="unit" name="unit"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>价格：</td>
+					<td><input type="text" id="price" name="price"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+				<tr>
+					<td>库存：</td>
+					<td><input type="text" id="store" name="store"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>总数：</td>
+					<td><input type="text" id="sum" name="sum"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font> &nbsp;<font color="red">*</font></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:saveEquipment()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeEquipmentDialog()"
+			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+	</div>
+	</div>
 </body>
 </html>

@@ -26,4 +26,6 @@ public interface ProjectCheckDao {
 		public int add(ProjectCheck pc);
 
 		public List<Integer> getFinishedPro();
+
+		public int delete(Integer proId);
 }

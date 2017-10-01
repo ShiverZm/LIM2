@@ -5,14 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.java1234.dao.EquipmentDao">
 
 	<resultMap type="Equipment" id="EquipmentResult">
-		<result property="id" column="id"/>
-		<result property="equipmentName" column="equipmentName"/>
-		<result property="model" column="model"/>
-		<result property="unit" column="unit"/>
-		<result property="price" column="price"/>
-		<result property="store" column="store"/>
-		<result property="sum" column="sum"/>
-		<result property="remark" column="remark"/>
+		<result property="id" column="id" />
+		<result property="equipmentName" column="equipmentName" />
+		<result property="model" column="model" />
+		<result property="unit" column="unit" />
+		<result property="price" column="price" />
+		<result property="store" column="store" />
+		<result property="sum" column="sum" />
+		<result property="remark" column="remark" />
 	</resultMap>
 
 	<select id="find" parameterType="Map" resultMap="EquipmentResult">
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
-	
+
 	<select id="getTotal" parameterType="Map" resultType="Long">
 		select count(*) from t_equipment
 		<where>
@@ -35,39 +35,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	<insert id="add" parameterType="Equipment" >
-	  insert into t_equipment value(null,#{equipmentName},#{model},#{unit},#{price},#{store},#{sum},#{remark})   
+	<insert id="add" parameterType="Equipment">
+		insert into t_equipment
+		value(null,#{equipmentName},#{model},#{unit},#{price},#{store},#{sum},#{remark})
 	</insert>
-	
+
 	<update id="update" parameterType="Equipment">
-	  update t_equipment 
-	   <set>
-	       <if test="equipmentName!=null and equipmentName!='' ">
-	          equipmentName=#{equipmentName},
-	       </if>
-	        <if test="model!=null and model!='' ">
-	          model=#{model},
-	       </if>
-	        <if test="unit!=null and unit!='' ">
-	          unit=#{unit},
-	       </if>
-	        <if test="price!=null and price!='' ">
-	          price=#{price},
-	       </if>
-	        <if test="store!=null and store!='' ">
-	          store=#{store},
-	       </if>
-	        <if test="sum!=null and sum!='' ">
-	          sum=#{sum},
-	       </if>
-	       <if test="remark!=null and remark!='' ">
-	          remark=#{remark},
-	       </if>  
-	   </set>
-	   where id=#{id}
+		update t_equipment
+		<set>
+			<if test="equipmentName!=null and equipmentName!='' ">
+				equipmentName=#{equipmentName},
+			</if>
+			<if test="model!=null and model!='' ">
+				model=#{model},
+			</if>
+			<if test="unit!=null and unit!='' ">
+				unit=#{unit},
+			</if>
+			<if test="price!=null and price!='' ">
+				price=#{price},
+			</if>
+			<if test="store!=null and store!='' ">
+				store=#{store},
+			</if>
+			<if test="sum!=null and sum!='' ">
+				sum=#{sum},
+			</if>
+			<if test="remark!=null and remark!='' ">
+				remark=#{remark},
+			</if>
+		</set>
+		where id=#{id}
 	</update>
-	
+
 	<delete id="delete" parameterType="Integer">
-	delete from t_equipment where id=#{id}
+		delete from t_equipment where id=#{id}
 	</delete>
 </mapper> 

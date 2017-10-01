@@ -22,6 +22,11 @@ import com.java1234.service.EquipmentService;
 import com.java1234.util.ResponseUtil;
 import com.java1234.util.StringUtil;
 
+/**
+ * 实验室设备
+ * @author zsw
+ *
+ */
 @Controller
 @RequestMapping("/equipment")
 public class EquipmentController {
@@ -30,7 +35,7 @@ public class EquipmentController {
 	private EquipmentService equipmentService;
 	
 	/**
-	 * 鍒嗛〉鏉′欢鏌ヨ璁惧
+	 * 查询分页
 	 * @param page
 	 * @param rows
 	 * @param s_EquipmentName
@@ -59,7 +64,7 @@ public class EquipmentController {
 	}
 	
 	/**
-	 * 娣诲姞鍜屼慨鏀硅澶�
+	 * 实验室设备 保存修改
 	 * @param equipment
 	 * @param response
 	 * @return
@@ -84,7 +89,7 @@ public class EquipmentController {
 	}
 	
 	/**
-	 * 鍒犻櫎璁惧
+	 * 实验室设备删除
 	 * @param ids
 	 * @param response
 	 * @return

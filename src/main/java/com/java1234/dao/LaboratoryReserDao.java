@@ -11,28 +11,17 @@ public interface LaboratoryReserDao {
 	    public List<LaboratoryReser> find(Map<String, Object> map);
 	    
 	    public long getTotal(Map<String, Object> map);
-	    
-	    /**
-	     * 
-	     * @param laboratoryReser
-	     * @return
-	     */
+	   
 	    public int update(LaboratoryReser laboratoryReser);
 	    
-	    /**
-	     * 
-	     * @param laboratoryReser
-	     * @return
-	     */
 	    public int add(LaboratoryReser laboratoryReser);
-	    
-	    /**
-	     *  
-	     * @param id
-	     * @return
-	     */
-		public int delete(Integer id);
+	   
+		public int delete(Integer labId);
 
 		public List<LaboratoryReser> findByLabResPerson(String realName);
+
+		public int findIdByLabName(String labName);
+
+		public LaboratoryReser findById(Integer labId);
       
 }

@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>LIMS</display-name>
-  <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
-  </welcome-file-list>
-  
-    <!-- shiro过滤器定义 -->
-	<filter>  
-	    <filter-name>shiroFilter</filter-name>  
-	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
-    <init-param>  
-    <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->  
-    <param-name>targetFilterLifecycle</param-name>  
-    <param-value>true</param-value>  
-    </init-param>  
-	</filter>  
-	<filter-mapping>  
-	        <filter-name>shiroFilter</filter-name>  
-	        <url-pattern>/*</url-pattern>  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>LIMS</display-name>
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- shiro过滤器定义 -->
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	
-    <!-- Spring配置文件 -->
+
+
+	<!-- Spring配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
@@ -44,7 +47,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
 	<!-- 添加对springmvc的支持 -->
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
@@ -56,10 +59,21 @@
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ProFile</display-name>
+		<servlet-name>ProFile</servlet-name>
+		<servlet-class>com.java1234.controller.ProFile</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	
-	
+	<servlet-mapping>
+		<servlet-name>ProFile</servlet-name>
+		<url-pattern>/ProFile</url-pattern>
+	</servlet-mapping>
+
+
 </web-app>

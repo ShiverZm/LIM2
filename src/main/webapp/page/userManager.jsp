@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/icon.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/jquery-easyui-1.5.2/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/jquery-easyui-1.5.2/themes/icon.css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
  var url;
  function searchUser(){
@@ -125,12 +130,12 @@
 			<th field="userName" width="70" align="center">用户名</th>
 			<th field="password" width="100" align="center">密码</th>
 			<th field="realName" width="120" align="center">真实姓名</th>
-			<th field="eamil" width="120" align="center">邮箱</th>
+			<th field="email" width="120" align="center">邮箱</th>
 			<th field="roleId" width="70" align="center">角色等级</th>
 		</thead>
 	</table>
 	<div id="tb">
-	<div>
+		<div>
 			<a href="javascript:openUserAddDialog()" class="easyui-linkbutton"
 				iconCls="icon-add" plain="true">添加</a> <a
 				href="javascript:openUserModifyDialog()" class="easyui-linkbutton"
@@ -138,51 +143,62 @@
 				href="javascript:deleteUser()" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true">删除</a>
 		</div>
- 	<div>
- 		&nbsp;用户名：&nbsp;<input type="text" id="s_userName" size="20" onkeydown="if(event.keyCode==13) searchUser()"/>
- 		<a href="javascript:searchUser()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
- 	</div>
- 	</div>
- 	<div id="dlg" class="easyui-dialog"  style="width:620px;height:250px;padding: 10px 20px"
-	 closed="true" buttons="#dlg-buttons">
-	  <form id="fm"	method="post">
-	   <table cellspace="8px">
-	     <tr>
-	       <td>账号：</td>
-	       <td><input type="text" id="userName" name="userName" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td>密码：</td>
-	       <td><input type="text" id="password" name="password" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	     <tr>
-	         <td>真实姓名：</td>
-	       <td><input type="text" id="realName" name="realName" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	     <tr>
-	         <td>邮箱：</td>
-	       	 <td><input type="text" id="email" name="email" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	      <tr>
-	         <td>角色等级：</td>
-	       	 <td>
-	       	 <select id="roleId" name="roleId" class="input" style="margin-top: 15px;height: 24px">
-								<option value="">请选择用户类型...</option>
-								<option value="1">系统管理员</option>
-								<option value="2">实验室中心主任</option>
-								<option value="3">实验室主任</option>
-								<option value="4">实验室责任人</option>
-								<option value="5">教师</option>
-								<option value="6">学生</option>
-			  </select>
-			</td>
-	     </tr>     
-	   </table>
-	  </form>
-	 </div>
-	 <div id="dlg-buttons">
- 	<a href="javascript:saveUser()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
- 	<a href="javascript:closeUserDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
- </div>
- </div>	
+		<div>
+			&nbsp;用户名：&nbsp;<input type="text" id="s_userName" size="20"
+				onkeydown="if(event.keyCode==13) searchUser()" /> <a
+				href="javascript:searchUser()" class="easyui-linkbutton"
+				iconCls="icon-search" plain="true">搜索</a>
+		</div>
+	</div>
+	<div id="dlg" class="easyui-dialog"
+		style="width: 620px; height: 250px; padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<form id="fm" method="post">
+			<table cellspace="8px">
+				<tr>
+					<td>账号：</td>
+					<td><input type="text" id="userName" name="userName"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>密码：</td>
+					<td><input type="text" id="password" name="password"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+				<tr>
+					<td>真实姓名：</td>
+					<td><input type="text" id="realName" name="realName"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+				<tr>
+					<td>邮箱：</td>
+					<td><input type="text" id="email" name="email"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+				<tr>
+					<td>角色等级：</td>
+					<td><select id="roleId" name="roleId" class="input"
+						style="margin-top: 15px; height: 24px">
+							<option value="">请选择用户类型...</option>
+							<option value="1">系统管理员</option>
+							<option value="2">实验室中心主任</option>
+							<option value="3">实验室主任</option>
+							<option value="4">实验室责任人</option>
+							<option value="5">教师</option>
+							<option value="6">学生</option>
+					</select></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:saveUser()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeUserDialog()"
+			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+	</div>
+	</div>
 </body>
 </html>

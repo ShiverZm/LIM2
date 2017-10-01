@@ -1,3 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/java1234/controller/EquipmentController.java=UTF-8
+encoding//src/main/java/com/java1234/controller/LaboratoryController.java=UTF-8
+encoding//src/main/java/com/java1234/controller/LaboratoryReserCheckController.java=UTF-8
 encoding//src/main/java/com/java1234/controller/ProjectApplyController.java=UTF-8
 encoding//src/main/java/com/java1234/controller/ProjectCheckController.java=UTF-8
+encoding//src/main/java/com/java1234/util/StringUtil.java=UTF-8

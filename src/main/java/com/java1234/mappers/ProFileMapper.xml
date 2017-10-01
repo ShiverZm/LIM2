@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java1234.dao.ProFileDao">
+
+	<resultMap type="ProFile" id="ProFileResult">
+		<result property="id" column="id" />
+		<result property="proId" column="proId" />
+		<result property="proStartFile" column="proStartFile" />
+		<result property="proEndFile" column="proEndFile" />
+		<result property="proStartTime" column="proStartTime" />
+		<result property="proEndTime" column="proEndTime" />
+	</resultMap>
+	<insert id="add" parameterType="ProFile">
+		insert into t_projectFile
+		value(null,#{proId},#{proStartFile},#{proEndFile},#{proStartTime},#{proEndTime})
+	</insert>
+	<select id="findByProId" parameterType="Integer" resultMap="ProFileResult">
+		select * from t_projectFile where proId=#{proId}
+	</select>
+</mapper> 

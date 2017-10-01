@@ -15,13 +15,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="find" parameterType="Map" resultMap="ProjectCheckResult">
 		select * from t_projectCheck
 		<where>
-		    checkByTeacher='否' or checkByDirector='否' or checkByCDirector='否'
+			checkByTeacher='否' or checkByDirector='否' or checkByCDirector='否'
 			<if test="proName!=null and proName!='' ">
 				and proName like #{proName}
 			</if>
 		</where>
 		<if test="start!=null and size!=null">
-			limit #{start},#{size} 
+			limit #{start},#{size}
 		</if>
 	</select>
 
@@ -33,23 +33,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
 	<update id="check" parameterType="ProjectCheck">
-	   update t_projectCheck 
-	   <set>
-	      checkByTeacher =#{checkByTeacher},
-	      checkByDirector =#{checkByDirector},
-	      checkByCDirector =#{checkByCDirector},
-	   </set>
-	   where proId=#{proId}
+		update t_projectCheck
+		<set>
+			checkByTeacher =#{checkByTeacher},
+			checkByDirector =#{checkByDirector},
+			checkByCDirector =#{checkByCDirector},
+		</set>
+		where proId=#{proId}
 	</update>
-	
+
 	<insert id="add" parameterType="ProjectCheck">
-	  insert into t_projectCheck value(#{proId},#{proName},"否","否","否")
+		insert into t_projectCheck value(#{proId},#{proName},"否","否","否")
 	</insert>
-	
+	<delete id="delete" parameterType="Integer">
+		delete from t_projectCheck where proId=#{proId}
+	</delete>
 	<select id="getFinishedPro" resultType="Integer">
-	   select proId from t_projectCheck 
-	   where checkByTeacher='是' and checkByDirector='是' and checkByCDirector='是'
+		select proId from t_projectCheck
+		where checkByTeacher='是' and checkByDirector='是' and checkByCDirector='是'
 	</select>
 </mapper> 

@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/icon.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/jquery-easyui-1.5.2/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/jquery-easyui-1.5.2/themes/icon.css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/jquery-easyui-1.5.2/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
  var url;
  function searchLaboratory(){
@@ -111,6 +116,49 @@
 	 	
 	 });
  }
+ function openLabClassLoadDialog(){
+	 var selectedRows=$("#dg").datagrid("getSelections");
+	 var row=selectedRows[0];
+	 if(selectedRows.length!=1){
+		 $.messager.alert("系统提示","请选择要上传课表的实验室");
+		 return false;
+	 }
+	 $("#dlg2").dialog("open").dialog("setTitle",row.LabName+"上传文件");
+	 
+}
+function saveLabClassDialog(){
+	 var selectedRows=$("#dg").datagrid("getSelections");
+	 var row=selectedRows[0];
+	 var labId=row.id;
+	 $("#fm2").form("submit",{
+			url:'${pageContext.request.contextPath}/laboratoryClass/upload.do?labId='+labId+'',
+		    onSubmit:function(){
+		    	/* if($("#file").val()==''){
+		    		$.messager.alert("系统消息","上传不能为空");
+		    		return false;
+		    	} */
+		    	return $(this).form("validate");
+		    },
+		    success:function(result){
+				var result=eval('('+result+')');
+				if(result.success){
+					$.messager.alert("系统提示","保存成功");
+					$("#dlg2").dialog("close");
+					$("#fm2").form("clear");
+				}
+				else{
+					$.messager.alert("系统提示","保存失败");
+					return;
+				}
+		    }
+		   });
+}
+function closeLabClassDialog(){
+	$("#dlg2").dialog("close");
+}
+function download(val,row,index){
+		return '<a href="${pageContext.request.contextPath}/laboratoryClass/download.do?labId='+row.id+'" target="_blank"><font color="red">下载</font></a>';
+}
 </script>
 </head>
 <body style="margin: 1px">
@@ -126,51 +174,86 @@
 			<th field="labCode" width="70" align="center">实验室代码</th>
 			<th field="labAddress" width="120" align="center">实验室地址</th>
 			<th field="labDutyPerson" width="120" align="center">实验室负责人</th>
+			<th field="labClassTable" width="120" align="center"
+				formatter="download">课表</th>
 		</thead>
 	</table>
 	<div id="tb">
-	<div>
-			<a href="javascript:openLaboratoryAddDialog()" class="easyui-linkbutton"
-				iconCls="icon-add" plain="true">添加</a> <a
-				href="javascript:openLaboratoryModifyDialog()" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true">修改</a> <a
+		<div>
+			<a href="javascript:openLaboratoryAddDialog()"
+				class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a> <a
+				href="javascript:openLaboratoryModifyDialog()"
+				class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> <a
 				href="javascript:deleteLaboratory()" class="easyui-linkbutton"
-				iconCls="icon-remove" plain="true">删除</a>
+				iconCls="icon-remove" plain="true">删除</a> <a
+				href="javascript:openLabClassLoadDialog()" class="easyui-linkbutton"
+				iconCls="icon-save" plain="true">上传课表</a>
 		</div>
- 	<div>
- 		&nbsp;实验室名称：&nbsp;<input type="text" id="s_labName" size="20" onkeydown="if(event.keyCode==13) searchLaboratory()"/>
- 		<a href="javascript:searchLaboratory()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
- 	</div>
- 	</div>
- 	<div id="dlg" class="easyui-dialog"  style="width:620px;height:250px;padding: 10px 20px"
-	 closed="true" buttons="#dlg-buttons">
-	  <form id="fm"	method="post">
-	   <table cellspace="8px">
-	     <tr>
-	       <td>实验室名称：</td>
-	       <td><input type="text" id="labName" name="labName" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td>实验室状态：</td>
-	       <td><input type="text" id="labStatus" name="labStatus" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	     <tr>
-	         <td>实验室代码：</td>
-	       <td><input type="text" id="labCode" name="labCode" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	       <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	       <td>实验室地址：</td>
-	       <td><input type="text" id="labAddress" name="labAddress" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	     <tr>
-	         <td>实验室负责人：</td>
-	       <td><input type="text" id="labDutyPerson" name="labDutyPerson" class="easyui-validatabox" required="true"/>&nbsp;<font color="red">*</font></td>
-	     </tr>
-	   </table>
-	  </form>
-	 </div>
-	 <div id="dlg-buttons">
- 	<a href="javascript:saveLaboratory()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
- 	<a href="javascript:closeLaboratoryDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
- </div>
- </div>	
+		<div>
+			&nbsp;实验室名称：&nbsp;<input type="text" id="s_labName" size="20"
+				onkeydown="if(event.keyCode==13) searchLaboratory()" /> <a
+				href="javascript:searchLaboratory()" class="easyui-linkbutton"
+				iconCls="icon-search" plain="true">搜索</a>
+		</div>
+	</div>
+	<div id="dlg" class="easyui-dialog"
+		style="width: 620px; height: 250px; padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<form id="fm" method="post">
+			<table cellspace="8px">
+				<tr>
+					<td>实验室名称：</td>
+					<td><input type="text" id="labName" name="labName"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>实验室状态：</td>
+					<td><input type="text" id="labStatus" name="labStatus"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+				<tr>
+					<td>实验室代码：</td>
+					<td><input type="text" id="labCode" name="labCode"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>实验室地址：</td>
+					<td><input type="text" id="labAddress" name="labAddress"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+				<tr>
+					<td>实验室负责人：</td>
+					<td><input type="text" id="labDutyPerson" name="labDutyPerson"
+						class="easyui-validatabox" required="true" />&nbsp;<font
+						color="red">*</font></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:saveLaboratory()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeLaboratoryDialog()"
+			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+	</div>
+	</div>
+	<div id="dlg2" class="easyui-dialog"
+		style="width: 300px; height: 200px; padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons2">
+		<form id="fm2" method="post" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td>课表上传:</td>
+					<td><input class="easyui-filebox" id="file" name="file" /></td>
+				</tr>
+			</table>
+		</form>
+		<div id="dlg-buttons2">
+			<a href="javascript:saveLabClassDialog()" class="easyui-linkbutton"
+				iconCls="icon-ok">保存</a> <a href="javascript:closeLabClassDialog()"
+				class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+		</div>
+	</div>
 </body>
 </html>

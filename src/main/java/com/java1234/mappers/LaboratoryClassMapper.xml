@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java1234.dao.LaboratoryClassDao">
+	<resultMap type="LaboratoryClass" id="LabClassResult">
+		<result property="id" column="id" />
+		<result property="labId" column="labId" />
+		<result property="labClassTable" column="labClassTable" />
+		<result property="labPublishTime" column="labPublishTime" />
+	</resultMap>
+	<insert id="add" parameterType="LaboratoryClass">
+		insert into t_labclasstable
+		value(null,#{labId},#{labClassTable},#{labPublishTime})
+	</insert>
+	<select id="findByLabId" parameterType="Integer" resultMap="LabClassResult">
+		select * from t_labclasstable where labId=#{labId}
+	</select>
+</mapper> 

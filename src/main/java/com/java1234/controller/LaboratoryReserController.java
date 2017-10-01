@@ -17,12 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java1234.entity.LaboratoryReser;
+import com.java1234.entity.LaboratoryReserCheck;
 import com.java1234.entity.PageBean;
 import com.java1234.entity.ProjectApply;
+import com.java1234.service.LaboratoryReserCheckService;
 import com.java1234.service.LaboratoryReserService;
 import com.java1234.util.ResponseUtil;
 import com.java1234.util.StringUtil;
 
+/**
+ * 实验室预约
+ * @author zsw
+ *
+ */
 @Controller
 @RequestMapping("/laboratoryReser")
 public class LaboratoryReserController {
@@ -30,8 +37,11 @@ public class LaboratoryReserController {
 	@Resource
 	private LaboratoryReserService laboratoryReserService;
 	
+	@Resource
+	private LaboratoryReserCheckService laboratoryReserCheckService;
+	
 	/**
-	 * 鍒嗛〉鏉′欢鏌ヨ瀹為獙瀹?
+	 * 分页查询
 	 * @param page
 	 * @param rows
 	 * @param s_LaboratoryReserName
@@ -60,7 +70,7 @@ public class LaboratoryReserController {
 	}
 	
 	/**
-	 * 
+	 * 添加或修改
 	 * @param laboratoryReser
 	 * @param response
 	 * @return
@@ -71,6 +81,10 @@ public class LaboratoryReserController {
 		int resultTotal=0;
 		if(laboratoryReser.getId()==null){
 			resultTotal=laboratoryReserService.add(laboratoryReser);
+			LaboratoryReserCheck labResCheck=new LaboratoryReserCheck();
+			labResCheck.setResId(laboratoryReser.getId());
+			labResCheck.setLabName(laboratoryReser.getLabName());
+			laboratoryReserCheckService.add(labResCheck);
 		}else{
 			resultTotal=laboratoryReserService.update(laboratoryReser);
 		}
@@ -85,7 +99,7 @@ public class LaboratoryReserController {
 	}
 	
 	/**
-	 *
+	 *删除
 	 * @param ids
 	 * @param response
 	 * @return
@@ -96,6 +110,7 @@ public class LaboratoryReserController {
 		String []idsStr=ids.split(",");
 		for (int i = 0; i < idsStr.length; i++) {
 			laboratoryReserService.delete(Integer.parseInt(idsStr[i]));
+			laboratoryReserCheckService.delete(Integer.parseInt(idsStr[i]));
 		}
 		JSONObject result=new JSONObject();
 		result.put("success", true);
@@ -103,6 +118,13 @@ public class LaboratoryReserController {
 		return null;
 	}
 	
+	/**
+	 * 通过用户名真实名字查询预约
+	 * @param realName
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/findMyLabReserv")
 	public String findMyProject(String realName,HttpServletResponse response) throws Exception {
 		System.out.println("--------------------------"+realName);

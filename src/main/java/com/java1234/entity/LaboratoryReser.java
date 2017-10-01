@@ -3,9 +3,9 @@ package com.java1234.entity;
 public class LaboratoryReser {
     private Integer id;
     private String labName;
-    private String labDutyPerson;
     private String labResPerson;
     private String labResTime;
+    
 	public Integer getId() {
 		return id;
 	}
@@ -17,12 +17,6 @@ public class LaboratoryReser {
 	}
 	public void setLabName(String labName) {
 		this.labName = labName;
-	}
-	public String getLabDutyPerson() {
-		return labDutyPerson;
-	}
-	public void setLabDutyPerson(String labDutyPerson) {
-		this.labDutyPerson = labDutyPerson;
 	}
 	public String getLabResPerson() {
 		return labResPerson;

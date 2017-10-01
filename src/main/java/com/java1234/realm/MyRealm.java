@@ -16,6 +16,11 @@ import org.apache.shiro.subject.PrincipalCollection;
 import com.java1234.entity.User;
 import com.java1234.service.UserService;
 
+/**
+ * shiro»®œﬁ”Ú
+ * @author zsw
+ *
+ */
 public class MyRealm extends AuthorizingRealm{
 
 	@Resource

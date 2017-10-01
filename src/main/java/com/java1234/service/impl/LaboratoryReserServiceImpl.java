@@ -50,4 +50,9 @@ public class LaboratoryReserServiceImpl implements LaboratoryReserService{
 	public List<LaboratoryReser> findByLabResPerson(String realName){
 		return laboratoryReserDao.findByLabResPerson(realName);
 	}
+
+
+	public LaboratoryReser findById(Integer labId) {
+		return laboratoryReserDao.findById(labId);
+	}
 }

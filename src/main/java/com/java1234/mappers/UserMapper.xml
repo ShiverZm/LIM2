@@ -5,30 +5,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.java1234.dao.UserDao">
 
 	<resultMap type="User" id="UserResult">
-		<result property="id" column="id"/>
-		<result property="userName" column="userName"/>
-		<result property="password" column="password"/>
+		<result property="id" column="id" />
+		<result property="userName" column="userName" />
+		<result property="password" column="password" />
 		<result property="roleId" column="roleId" />
 		<result property="realName" column="realName" />
 		<result property="email" column="email" />
 	</resultMap>
-	
+
 	<select id="login" parameterType="User" resultMap="UserResult">
-	   select * from t_user u
-	   where userName=#{userName} and password=#{password} and roleId=#{roleId} 
+		select * from t_user u
+		where userName=#{userName} and password=#{password} and roleId=#{roleId}
 	</select>
 	<select id="getRoles" parameterType="String" resultType="String">
-	   select r.roleName from t_user u,t_role r
-	   where u.roleId=r.id and u.userName=#{userName} 
+		select r.roleName from t_user u,t_role r
+		where u.roleId=r.id and u.userName=#{userName}
 	</select>
 	<select id="getPermissions" parameterType="String" resultType="String">
-	   select p.permissionName from t_user u,t_permission p,t_role r 
-	   where u.roleId=r.id and r.id=p.roleId and u.userName=#{userName}
+		select p.permissionName from t_user u,t_permission p,t_role r
+		where u.roleId=r.id and r.id=p.roleId and u.userName=#{userName}
 	</select>
 	<select id="getByUserName" parameterType="String" resultMap="UserResult">
-	   select * from t_user where userName=#{userName}
+		select * from t_user where userName=#{userName}
 	</select>
-	
+
 	<select id="find" parameterType="Map" resultMap="UserResult">
 		select * from t_user
 		<where>
@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
-	
+
 	<select id="getTotal" parameterType="Map" resultType="Long">
 		select count(*) from t_user
 		<where>
@@ -49,43 +49,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	<insert id="add" parameterType="User" >
-	  insert into t_user value(null,#{userName},#{password},#{realName},#{email},#{roleId})   
+	<insert id="add" parameterType="User">
+		insert into t_user
+		value(null,#{userName},#{password},#{realName},#{email},#{roleId})
 	</insert>
-	
+
 	<update id="update" parameterType="User">
-	  update t_user 
-	   <set>
-	       <if test="userName!=null and userName!='' ">
-	          userName=#{userName},
-	       </if>
-	        <if test="password!=null and password!='' ">
-	          password=#{password},
-	       </if>
-	        <if test="realName!=null and realName!='' ">
-	          realName=#{realName},
-	       </if>
-	        <if test="email!=null and email!='' ">
-	          email=#{email},
-	       </if>
-	        <if test="roleId!=null and roleId!='' ">
-	          roleId=#{roleId},
-	       </if>
-	   </set>
-	   where id=#{id}
+		update t_user
+		<set>
+			<if test="userName!=null and userName!='' ">
+				userName=#{userName},
+			</if>
+			<if test="password!=null and password!='' ">
+				password=#{password},
+			</if>
+			<if test="realName!=null and realName!='' ">
+				realName=#{realName},
+			</if>
+			<if test="email!=null and email!='' ">
+				email=#{email},
+			</if>
+			<if test="roleId!=null and roleId!='' ">
+				roleId=#{roleId},
+			</if>
+		</set>
+		where id=#{id}
 	</update>
-	
+
 	<delete id="delete" parameterType="Integer">
-	delete from t_user where id=#{id}
+		delete from t_user where id=#{id}
 	</delete>
-	
-	<update id="modifyPassword" >
-	  update  t_user 
-	  <set>
-	     <if test="newPassword!=null and newPassword!='' ">
-	          password=#{newPassword},
-	       </if>
-	   </set>
-	   where userName=#{userName} and password=#{oldPassword}
+
+	<update id="modifyPassword">
+		update t_user
+		<set>
+			<if test="newPassword!=null and newPassword!='' ">
+				password=#{newPassword},
+			</if>
+		</set>
+		where userName=#{userName} and password=#{oldPassword}
 	</update>
 </mapper> 

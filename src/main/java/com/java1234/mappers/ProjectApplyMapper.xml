@@ -14,8 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="proTeacher" column="proTeacher" />
 		<result property="proEquipment" column="proEquipment" />
 		<result property="proAddress" column="proAddress" />
-		<result property="proStartFile" column="proStartFile" />
-		<result property="proEndFile" column="proEndFile" />
 	</resultMap>
 
 	<select id="find" parameterType="Map" resultMap="ProjectApplyResult">
@@ -39,42 +37,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	<insert id="add" parameterType="ProjectApply">
-		insert into t_projectapply value(null,#{proName},#{proContent},#{proApplicant},#{proGroupMember},
-		#{proStartTime},
-		<if test="proTeacher=null or proTeacher='' ">
-				null,
-		</if>
-		<if test="proTeacher!=null and proTeacher!='' ">
-				#{proTeacher},
-		</if>
-		<if test="proEquipment=null or proEquipment='' ">
-				null,
-		</if>
-		<if test="proEquipment!=null and proEquipment!='' ">
-				#{proEquipment},
-		</if>
-		<if test="proAddress=null or proAddress='' ">
-				null,
-		</if>
-		<if test="proAddress!=null and proAddress!='' ">
-				#{proAddress},
-		</if>
-		<if test="proStartFile=null or proStartFile='' ">
-				null,
-		</if>
-		<if test="proStartFile!=null and proStartFile!='' ">
-				#{proStartFile},
-		</if>
-		<if test="proEndFile=null or proEndFile='' ">
-				null
-		</if>
-		<if test="proEndFile!=null and proEndFile!='' ">
-				#{proEndFile}
-		</if>
-		)
+		insert into t_projectapply
+		values(null,#{proName},#{proContent},#{proApplicant},#{proGroupMember},
+		#{proStartTime},#{proTeacher},#{proEquipment},#{proAddress})
 	</insert>
+	
 	<update id="update" parameterType="ProjectApply">
-		update t_projectapply 
+		update t_projectapply
 		<set>
 			<if test="proName!=null and proName!='' ">
 				proName=#{proName},
@@ -100,29 +69,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="proAddress!=null and proAddress!='' ">
 				proAddress=#{proAddress},
 			</if>
-			<if test="proStartFile!=null and proStartFile!='' ">
-			   proStartFile=#{proStartFile},
-			</if>
-			<if test="proEndFile!=null and proEndFile!='' ">
-			   proEndFile=#{proEndFile}
-			</if>
 		</set>
 		where id=#{id}
 	</update>
 
 	<delete id="delete" parameterType="Integer">
-		delete from t_projectapply where id=#{id}
+		delete from t_projectapply
+		where id=#{id}
 	</delete>
-	
+
 	<select id="findIdByProName" parameterType="String" resultType="Integer">
-	    select id from t_projectApply where proName=#{proName}
+		select id from t_projectApply where proName=#{proName}
 	</select>
-	
+
 	<select id="findById" parameterType="Integer" resultType="ProjectApply">
-	    select * from t_projectApply where id=#{id}
+		select * from t_projectApply where id=#{id}
 	</select>
-	<select id="findByProApplicant" parameterType="String" resultMap="ProjectApplyResult">
-	    select * from t_projectApply where proApplicant=#{realName}
+	<select id="findByProApplicant" parameterType="String"
+		resultMap="ProjectApplyResult">
+		select * from t_projectApply where proApplicant=#{realName}
 	</select>
-	
+
 </mapper> 

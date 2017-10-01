@@ -5,12 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.java1234.dao.LaboratoryDao">
 
 	<resultMap type="Laboratory" id="LaboratoryResult">
-		<result property="id" column="id"/>
-		<result property="labName" column="labName"/>
-		<result property="labStatus" column="labStatus"/>
-		<result property="labCode" column="labCode"/>
-		<result property="labAddress" column="labAddress"/>
-		<result property="labDutyPerson" column="labDutyPerson"/>
+		<result property="id" column="id" />
+		<result property="labName" column="labName" />
+		<result property="labStatus" column="labStatus" />
+		<result property="labCode" column="labCode" />
+		<result property="labAddress" column="labAddress" />
+		<result property="labDutyPerson" column="labDutyPerson" />
 	</resultMap>
 
 	<select id="find" parameterType="Map" resultMap="LaboratoryResult">
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			limit #{start},#{size}
 		</if>
 	</select>
-	
+
 	<select id="getTotal" parameterType="Map" resultType="Long">
 		select count(*) from t_laboratory
 		<where>
@@ -33,33 +33,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	<insert id="add" parameterType="Laboratory" >
-	  insert into t_laboratory value(null,#{labName},#{labStatus},#{labCode},#{labAddress},#{labDutyPerson})   
+	<insert id="add" parameterType="Laboratory">
+		insert into t_laboratory
+		value(null,#{labName},#{labStatus},#{labCode},#{labAddress},#{labDutyPerson})
 	</insert>
-	
+
 	<update id="update" parameterType="Laboratory">
-	  update t_laboratory 
-	   <set>
-	       <if test="labName!=null and labName!='' ">
-	          labName=#{labName},
-	       </if>
-	        <if test="labStatus!=null and labStatus!='' ">
-	          labStatus=#{labStatus},
-	       </if>
-	        <if test="labCode!=null and labCode!='' ">
-	          labCode=#{labCode},
-	       </if>
-	        <if test="labAddress!=null and labAddress!='' ">
-	          labAddress=#{labAddress},
-	       </if>
-	        <if test="labDutyPerson!=null and labDutyPerson!='' ">
-	          labDutyPerson=#{labDutyPerson},
-	       </if>
-	   </set>
-	   where id=#{id}
+		update t_laboratory
+		<set>
+			<if test="labName!=null and labName!='' ">
+				labName=#{labName},
+			</if>
+			<if test="labStatus!=null and labStatus!='' ">
+				labStatus=#{labStatus},
+			</if>
+			<if test="labCode!=null and labCode!='' ">
+				labCode=#{labCode},
+			</if>
+			<if test="labAddress!=null and labAddress!='' ">
+				labAddress=#{labAddress},
+			</if>
+			<if test="labDutyPerson!=null and labDutyPerson!='' ">
+				labDutyPerson=#{labDutyPerson},
+			</if>
+		</set>
+		where id=#{id}
 	</update>
-	
+
 	<delete id="delete" parameterType="Integer">
-	delete from t_laboratory where id=#{id}
+		delete from t_laboratory where id=#{id}
 	</delete>
 </mapper> 

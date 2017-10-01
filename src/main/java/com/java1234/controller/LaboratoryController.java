@@ -22,6 +22,11 @@ import com.java1234.service.LaboratoryService;
 import com.java1234.util.ResponseUtil;
 import com.java1234.util.StringUtil;
 
+/**
+ * 实验室管理
+ * @author zsw
+ *
+ */
 @Controller
 @RequestMapping("/laboratory")
 public class LaboratoryController {
@@ -30,7 +35,7 @@ public class LaboratoryController {
 	private LaboratoryService laboratoryService;
 	
 	/**
-	 * 分页条件查询实验室
+	 * 分页查询
 	 * @param page
 	 * @param rows
 	 * @param s_LaboratoryName
@@ -59,7 +64,7 @@ public class LaboratoryController {
 	}
 	
 	/**
-	 * 添加和修改实验室
+	 * 保存修改
 	 * @param laboratory
 	 * @param response
 	 * @return
@@ -67,7 +72,7 @@ public class LaboratoryController {
 	 */
 	@RequestMapping("/save")
 	public String save(Laboratory laboratory,HttpServletResponse response)throws Exception{
-		int resultTotal=0;//操作记录条数
+		int resultTotal=0;//鎿嶄綔璁板綍鏉℃暟
 		if(laboratory.getId()==null){
 			resultTotal=laboratoryService.add(laboratory);
 		}else{
@@ -84,7 +89,7 @@ public class LaboratoryController {
 	}
 	
 	/**
-	 * 删除实验室
+	 * 删除
 	 * @param ids
 	 * @param response
 	 * @return

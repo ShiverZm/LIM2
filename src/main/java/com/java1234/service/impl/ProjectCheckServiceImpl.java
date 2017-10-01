@@ -38,4 +38,8 @@ public class ProjectCheckServiceImpl implements ProjectCheckService {
 	public List<Integer> getFinishedPro(){
 		return projectCheckDao.getFinishedPro();
 	}
+
+	public int delete(int proId) {
+		return projectCheckDao.delete(proId);
+	}
 }

@@ -12,8 +12,6 @@ public class ProjectApply {
 		private String proTeacher;
 		private String proEquipment;
 		private String proAddress;
-		private String proStartFile;
-		private String proEndFile;
 		
 		public ProjectApply() {
 			
@@ -78,24 +76,13 @@ public class ProjectApply {
 		public void setProAddress(String proAddress) {
 			this.proAddress = proAddress;
 		}
-		public String getProStartFile() {
-			return proStartFile;
-		}
-		public void setProStartFile(String proStartFile) {
-			this.proStartFile = proStartFile;
-		}
-		public String getProEndFile() {
-			return proEndFile;
-		}
-		public void setProEndFile(String proEndFile) {
-			this.proEndFile = proEndFile;
-		}
+	
 		@Override
 		public String toString() {
 			return "ProjectApply [id=" + id + ", proName=" + proName + ", proContent=" + proContent + ", proApplicant="
 					+ proApplicant + ", proGroupMember=" + proGroupMember + ", proStartTime=" + proStartTime
 					+ ", proTeacher=" + proTeacher + ", proEquipment=" + proEquipment + ", proAddress=" + proAddress
-					+ ", proStartFile=" + proStartFile + ", proEndFile=" + proEndFile + "]";
+					+ "]";
 		}
 		
 }

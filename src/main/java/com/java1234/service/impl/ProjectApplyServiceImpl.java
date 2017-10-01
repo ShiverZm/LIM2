@@ -18,6 +18,8 @@ public class ProjectApplyServiceImpl implements ProjectApplyService {
     
 	@Resource
 	private ProjectApplyDao projectApplyDao;
+	@Resource
+	private ProjectCheckDao projectCheckDao;
 	
 	public List<ProjectApply> find(Map<String, Object> map) {
 		
@@ -39,6 +41,8 @@ public class ProjectApplyServiceImpl implements ProjectApplyService {
 	}
 
 	public int delete(Integer id) {
+		
+		
 		return projectApplyDao.delete(id);
 	}
 	

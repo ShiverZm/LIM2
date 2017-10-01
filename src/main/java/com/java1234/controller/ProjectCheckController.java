@@ -26,6 +26,12 @@ import com.java1234.service.ProjectCheckService;
 import com.java1234.util.ResponseUtil;
 import com.java1234.util.StringUtil;
 
+
+/**
+ * 项目审查
+ * @author zsw
+ *
+ */
 @Controller
 @RequestMapping("/projectCheck")
 public class ProjectCheckController {
@@ -36,7 +42,7 @@ public class ProjectCheckController {
 	private ProjectApplyService projectApplyService;
 	
 	/**
-	 * 
+	 * 分页查询
 	 * @param page
 	 * @param rows
 	 * @param s_ProjectCheckName
@@ -63,7 +69,13 @@ public class ProjectCheckController {
 		ResponseUtil.write(response, result);
 		return null;
 	}
-	
+	/**
+	 * 实验室主任 中心主任 指导老师审查项目
+	 * @param projectCheck
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/check")
 	public String check(ProjectCheck projectCheck,HttpServletResponse response) throws Exception {
 		int i=0;
@@ -82,6 +94,12 @@ public class ProjectCheckController {
 		
 	}
 	
+	/**
+	 * 获得全部通过审查的项目申请 并返回集合
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/getFinishedPro")
 	public String getFinishedPro(HttpServletResponse response) throws Exception{
 		

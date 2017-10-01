@@ -1,5 +1,6 @@
 package com.java1234.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +28,27 @@ import com.java1234.util.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+/**
+ * 用户
+ * @author zsw
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
 	@Resource
     private UserService userService;
-    
+    /**
+     * 登录
+     * @param user
+     * @param request
+     * @param session
+     * @param response
+     * @return
+     * @throws Exception
+     */
 	@RequestMapping("/login")
-	public String login(User user,HttpServletRequest request,HttpSession session) {
+	public String login(User user,HttpServletRequest request,HttpSession session,HttpServletResponse response) throws Exception {
 		User resultUser=userService.login(user);
 		Subject subject=SecurityUtils.getSubject();
 		
@@ -46,14 +61,32 @@ public class UserController {
 			session=request.getSession();
 			subject.login(token);
 			session.setAttribute("currentUser", resultUser);
-			return "redirect:/main.jsp";
+			response.sendRedirect("../main.jsp");
+			return null;
 		}
 	}
+	/**
+	 * 登出
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/logout")
 	public String logout(HttpSession session)throws Exception{
+		Subject subject=SecurityUtils.getSubject();
+		subject.logout();
 		System.out.println("---------------logout!!!--------------------");
 		return "redirect:/login.jsp";
 	}
+	/**
+	 * 分页查询
+	 * @param page
+	 * @param rows
+	 * @param s_userName
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/list")
 	public String list(@RequestParam(value="page",required=false) String page,
 			@RequestParam(value="rows",required=false)String rows,User s_userName,HttpServletResponse response)
@@ -75,7 +108,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 
+	 * 保存修改
 	 * @param user
 	 * @param response
 	 * @return
@@ -100,7 +133,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 閸掔娀娅庣拋鎯ь槵
+	 * 删除
 	 * @param ids
 	 * @param response
 	 * @return
@@ -117,6 +150,13 @@ public class UserController {
 		ResponseUtil.write(response, result);
 		return null;
 	}
+	/**
+	 * 修改密码
+	 * @param userName
+	 * @param oldPassword1
+	 * @param newPassword
+	 * @return
+	 */
 	@RequestMapping("/modifyPassword")
 	public String modifyPassword(String userName,String oldPassword1,String newPassword) {
 		System.out.println("userName:"+userName);

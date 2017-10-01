@@ -26,5 +26,7 @@ public interface ProjectCheckService {
 	public int add(ProjectCheck pc);
 
 	public List<Integer> getFinishedPro();
+
+	public int delete(int proId);
   
 }

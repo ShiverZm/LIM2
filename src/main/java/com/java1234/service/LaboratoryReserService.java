@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.java1234.entity.LaboratoryReser;
+import com.java1234.entity.ProjectApply;
 
 public interface LaboratoryReserService {
     
     public List<LaboratoryReser> find(Map<String, Object> map);
-    
     
     public long getTotal(Map<String, Object> map);
 
@@ -18,6 +18,7 @@ public interface LaboratoryReserService {
    
     public int delete(Integer id);
 
-
-	public List<LaboratoryReser> findByLabResPerson(String realName);
+    public List<LaboratoryReser> findByLabResPerson(String realName);
+	
+	public LaboratoryReser findById(Integer id);
 }

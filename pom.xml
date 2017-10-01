@@ -85,9 +85,6 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.1</version>
 		</dependency>
-
-		<!-- Apache Commons IO -->
-		<!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -167,6 +164,28 @@
 
 	</dependencies>
 	<build>
-		<finalName>LIMS</finalName>
-	</build>
+	<resources>
+		<resource>
+			<directory>src/main/java</directory>
+			<includes>
+				<include>**/*.xml</include>
+			</includes>
+		</resource>
+	</resources>
+	<finalName>LIMS2</finalName>
+    </build>
+    <plugin>  
+  <groupId>org.apache.maven.plugins</groupId>  
+  <artifactId>maven-source-plugin</artifactId>  
+  <version>2.1.2</version>  
+  <executions>  
+    <execution>  
+      <id>attach-sources</id>  
+      <phase>verify</phase>  
+      <goals>  
+        <goal>jar-no-fork</goal>  
+      </goals>  
+    </execution>  
+  </executions>  
+</plugin>   
 </project>

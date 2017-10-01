@@ -8,7 +8,8 @@ package com.java1234.util;
 public class StringUtil {
 
 	/**
-	 * 判断是否是空
+	 * 字符串
+	 * 判断是否为空
 	 * @param str
 	 * @return
 	 */
@@ -21,7 +22,7 @@ public class StringUtil {
 	}
 	
 	/**
-	 * 判断是否不是空
+	 * 字符串是否不为空
 	 * @param str
 	 * @return
 	 */
@@ -34,7 +35,7 @@ public class StringUtil {
 	}
 	
 	/**
-	 * 格式化模糊查询
+	 * 字符串转换为相似查找格式
 	 * @param str
 	 * @return
 	 */
