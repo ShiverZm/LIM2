@@ -1,6 +1,8 @@
 package com.java1234.entity;
 
+
 public class LaboratoryReser {
+	
     private Integer id;
     private String labName;
     private String labResPerson;

@@ -12,11 +12,11 @@ public interface LaboratoryReserCheckDao {
 	    
 	    public long getTotal(Map<String, Object> map);
    
-        public int check(LaboratoryReserCheck projectCheck);
+        public int check(LaboratoryReserCheck labReserCheck);
 
-		public int add(LaboratoryReserCheck pc);
+		public int add(LaboratoryReserCheck lr);
 
-		public List<Integer> getFinishedPro();
-
-		public int delete(Integer proId);
+		public int delete(Integer resId);
+		
+		public List<Integer> getFinishedRes();
 }

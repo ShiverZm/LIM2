@@ -104,7 +104,7 @@ public class LaboratoryReserCheckController {
 	@RequestMapping("/getFinishedPro")
 	public String getFinishedPro(HttpServletResponse response) throws Exception{
 		
-		List<Integer> passedId=labReserCheckService.getFinishedPro();
+		List<Integer> passedId=labReserCheckService.getFinishedRes();
 		List<LaboratoryReser> proList=new ArrayList<LaboratoryReser>();
 		for (Integer id : passedId) {
 			System.out.println(id);

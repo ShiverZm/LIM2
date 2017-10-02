@@ -13,10 +13,10 @@ public interface LaboratoryReserDao {
 	    public long getTotal(Map<String, Object> map);
 	   
 	    public int update(LaboratoryReser laboratoryReser);
-	    
+	    	    
 	    public int add(LaboratoryReser laboratoryReser);
 	   
-		public int delete(Integer labId);
+		public int delete(Integer  resId);
 
 		public List<LaboratoryReser> findByLabResPerson(String realName);
 

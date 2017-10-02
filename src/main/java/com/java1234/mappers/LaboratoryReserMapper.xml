@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java1234.dao.LaboratoryReserDao">
 
-	<resultMap type="LaboratoryReser" id="LaboratoryReserResult">
+	<resultMap type="LaboratoryReservation" id="LaboratoryReserResult">
 		<result property="id" column="id" />
 		<result property="labName" column="labName" />
 		<result property="labResPerson" column="labResPerson" />
@@ -68,4 +68,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findById" parameterType="Integer" resultType="LaboratoryReserResult">
 		select id from t_labReservation where id=#{labId}
 	</select>
+	
 </mapper> 

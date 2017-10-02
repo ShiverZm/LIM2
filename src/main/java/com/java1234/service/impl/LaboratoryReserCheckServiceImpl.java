@@ -35,8 +35,8 @@ public class LaboratoryReserCheckServiceImpl implements LaboratoryReserCheckServ
 	
 		return labReserCheckDao.add(pc);
 	}
-	public List<Integer> getFinishedPro(){
-		return labReserCheckDao.getFinishedPro();
+	public List<Integer> getFinishedRes(){
+		return labReserCheckDao.getFinishedRes();
 	}
 
 	public int delete(int resId) {

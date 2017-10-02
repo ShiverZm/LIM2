@@ -16,7 +16,7 @@ public interface LaboratoryReserCheckService {
 
 	public int add(LaboratoryReserCheck labResCheck);
 
-	public List<Integer> getFinishedPro();
+	public List<Integer> getFinishedRes();
 
 	public int delete(int resId);
   

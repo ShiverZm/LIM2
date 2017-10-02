@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_labReserCheck
 		<where>
 			checkByTeacher='否' or checkByDirector='否' or checkByCDirector='否'
-			<if test="proName!=null and proName!='' ">
-				and proName like #{proName}
+			<if test="labName!=null and labName!='' ">
+				and labName like #{labName}
 			</if>
 		</where>
 		<if test="start!=null and size!=null">
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotal" parameterType="Map" resultType="Long">
 		select count(*) from t_labReserCheck
 		<where>
-			<if test="labName!=null and proName!='' ">
+			<if test="labName!=null and labName!='' ">
 				and labName like #{labName}
 			</if>
 		</where>
@@ -41,19 +41,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			checkByDirector =#{checkByDirector},
 			checkByCDirector =#{checkByCDirector},
 		</set>
-		where proId=#{proId}
+		where resId=#{resId}
 	</update>
 
 	<insert id="add" parameterType="LaboratoryReserCheck">
-		insert into t_labReserCheck value(#{proId},#{proName},"否","否","否")
+		insert into t_labReserCheck values(#{resId},#{labName},"否","否","否")
 	</insert>
 	
 	<delete id="delete" parameterType="Integer">
-		delete from t_labReserCheck where labId=#{labId}
+		delete from t_labReserCheck where resId=#{resId}
 	</delete>
 	
-	<select id="getFinishedPro" resultType="Integer">
-		select proId from t_labReserCheck
+	<select id="getFinishedRes" resultType="Integer">
+		select labId from t_labReserCheck
 		where checkByTeacher='是' and checkByDirector='是' and checkByCDirector='是'
 	</select>
 </mapper> 
