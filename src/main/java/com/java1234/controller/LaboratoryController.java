@@ -106,4 +106,14 @@ public class LaboratoryController {
 		ResponseUtil.write(response, result);
 		return null;
 	}
+	@RequestMapping("/listLab")
+	public String listLab(HttpServletResponse response) throws Exception {
+		List<String>listLab=laboratoryService.listLab();
+		JSONArray list=JSONArray.fromObject(listLab);
+		JSONObject result=new JSONObject();
+		result.put("labName", list);
+		ResponseUtil.write(response, result);
+		return null;
+	}
+	
 }

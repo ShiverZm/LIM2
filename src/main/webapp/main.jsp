@@ -78,7 +78,7 @@
 				--%>
 				<strong>欢迎：
 				</strong>
-				${currentUser.userName }  
+				${currentUser.realName }  
 				    <c:choose>
     					<c:when test="${currentUser.roleId==1}">
            									  【管理员】
@@ -146,7 +146,7 @@
 						data-options="plain:true,iconCls:'icon-khlsgl'"
 						style="width: 150px;">项目在审列表</a>
 						<a
-						href="javascript:openTab('实验室预约在审列表','laboratoryReserList.jsp','icon-khlsgl')"
+						href="javascript:openTab('实验室预约在审列表','laboratoryReserCheckList.jsp','icon-khlsgl')"
 						class="easyui-linkbutton"
 						data-options="plain:true,iconCls:'icon-khlsgl'"
 						style="width: 150px;">实验室预约在审列表</a>
@@ -157,7 +157,7 @@
 					data-options="plain:true,iconCls:'icon-yxjhgl'"
 					style="width: 150px">项目通过列表</a>
 				<a
-					href="javascript:openTab('实验室预约通过列表','projectPassedList.jsp','icon-yxjhgl')"
+					href="javascript:openTab('实验室预约通过列表','labReserPassedList.jsp','icon-yxjhgl')"
 					class="easyui-linkbutton"
 					data-options="plain:true,iconCls:'icon-yxjhgl'"
 					style="width: 150px">实验室预约通过列表</a>

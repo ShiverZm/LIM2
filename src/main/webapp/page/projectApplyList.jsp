@@ -123,26 +123,26 @@
 				<tr>
 					<td>项目名称：</td>
 					<td><input type="text" id="proName" name="proName"
-						class="easyui-validatabox" required="true" />&nbsp;<font
+						class="easyui-textbox" required="true" />&nbsp;<font
 						color="red">*</font></td>
 				</tr>
 				<tr>
 					<td>项目申请人：</td>
 					<td><input type="text" id="proApplicant" name="proApplicant"
-						class="easyui-validatabox" required="true"
+						class="easyui-textbox" required="true"
 						value="${currentUser.realName}" readonly="true" />&nbsp;<font
 						color="red">*</font></td>
 				</tr>
 				<tr>
 					<td>项目内容：</td>
 					<td><input type="text" style="height: 50px" id="proContent"
-						name="proContent" class="easyui-validatabox" required="true" />&nbsp;<font
+						name="proContent" class="easyui-textbox" required="true" />&nbsp;<font
 						color="red">*</font></td>
 				</tr>
 				<tr>
 					<td>项目成员：</td>
 					<td><input type="text" id="proGroupMember"
-						name="proGroupMember" class="easyui-validatabox" required="true" />&nbsp;<font
+						name="proGroupMember" class="easyui-textbox" required="true" />&nbsp;<font
 						color="red">*</font></td>
 				</tr>
 				<tr>
@@ -153,19 +153,19 @@
 				<tr>
 					<td>项目指导老师：</td>
 					<td><input type="text" id="proTeacher" name="proTeacher"
-						class="easyui-validatabox" required="true" />&nbsp;<font
+						class="easyui-textbox" required="true" />&nbsp;<font
 						color="red">*</font></td>
 				</tr>
 				<tr>
 					<td>项目所需设备：</td>
 					<td><input type="text" id="proEquipment" name="proEquipment"
-						class="easyui-validatabox" required="true" />&nbsp;<font
+						class="easyui-textbox" required="true" />&nbsp;<font
 						color="red">*</font></td>
 				</tr>
 				<tr>
 					<td>项目活动地点：</td>
 					<td><input type="text" id="proAddress" name="proAddress"
-						class="easyui-validatabox" required="false" />&nbsp;<font
+						class="easyui-textbox" required="false" />&nbsp;<font
 						color="red">*</font></td>
 				</tr>
 			</table>

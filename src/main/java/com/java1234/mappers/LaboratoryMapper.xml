@@ -63,4 +63,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		delete from t_laboratory where id=#{id}
 	</delete>
+	
+	<select id="listLab" resultType="String">
+	   select labName from t_laboratory
+	</select>
 </mapper> 

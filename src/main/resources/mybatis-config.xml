@@ -5,18 +5,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<!-- 别名 -->
 	<typeAliases>
-	<!-- 		<package name="com.java1234.entity" /> -->
-	  <typeAlias alias="Equipment" type="com.java1234.entity.Equipment"/>
-	  <typeAlias alias="Laboratory" type="com.java1234.entity.Laboratory"/>
-	  <typeAlias alias="LaboratoryClass" type="com.java1234.entity.LaboratoryClass"/>
-	  <typeAlias alias="LaboratoryReservation" type="com.java1234.entity.LaboratoryReser"/>
-	  <typeAlias alias="LaboratoryReserCheck" type="com.java1234.entity.LaboratoryReserCheck"/>
-	  <typeAlias alias="Message" type="com.java1234.entity.Message"/>
-	  <typeAlias alias="PageBean" type="com.java1234.entity.PageBean"/>
-	  <typeAlias alias="ProFile" type="com.java1234.entity.ProFile"/>
-	  <typeAlias alias="ProjectApply" type="com.java1234.entity.ProjectApply"/>
-	  <typeAlias alias="ProjectCheck" type="com.java1234.entity.ProjectCheck"/>
-	  <typeAlias alias="User" type="com.java1234.entity.User"/>
+			<package name="com.java1234.entity" />
+<!-- 	  <typeAlias alias="Equipment" type="com.java1234.entity.Equipment"/> -->
+<!-- 	  <typeAlias alias="Laboratory" type="com.java1234.entity.Laboratory"/> -->
+<!-- 	  <typeAlias alias="LaboratoryClass" type="com.java1234.entity.LaboratoryClass"/> -->
+<!-- 	  <typeAlias alias="LaboratoryReservation" type="com.java1234.entity.LaboratoryReser"/> -->
+<!-- 	  <typeAlias alias="LaboratoryReserCheck" type="com.java1234.entity.LaboratoryReserCheck"/> -->
+<!-- 	  <typeAlias alias="Message" type="com.java1234.entity.Message"/> -->
+<!-- 	  <typeAlias alias="PageBean" type="com.java1234.entity.PageBean"/> -->
+<!-- 	  <typeAlias alias="ProFile" type="com.java1234.entity.ProFile"/> -->
+<!-- 	  <typeAlias alias="ProjectApply" type="com.java1234.entity.ProjectApply"/> -->
+<!-- 	  <typeAlias alias="ProjectCheck" type="com.java1234.entity.ProjectCheck"/> -->
+<!-- 	  <typeAlias alias="User" type="com.java1234.entity.User"/> -->
 	</typeAliases>
 	
 </configuration>

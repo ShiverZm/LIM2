@@ -18,4 +18,7 @@ public interface LaboratoryDao {
 
 	    public int delete(Integer id);
 
+
+		public List<String> listLab();
+
 }

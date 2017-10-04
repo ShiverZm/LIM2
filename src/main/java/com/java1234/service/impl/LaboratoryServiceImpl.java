@@ -46,4 +46,10 @@ public class LaboratoryServiceImpl implements LaboratoryService{
 		
 		return laboratoryDao.delete(id);
 	}
+
+
+	public List<String> listLab() {
+		
+		return laboratoryDao.listLab();
+	}
 }
